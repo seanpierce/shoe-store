@@ -1,0 +1,21 @@
+.nav {
+  text-align: center;
+}
+.nav a {
+  margin: 0 12px;
+}
+textarea {
+  margin: 0 0 10px 0;
+  width: 300px;
+  height: 100px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li:before {
+  content: "🍴";
+  padding-right: 8px;
+}
