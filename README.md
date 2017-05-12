@@ -24,6 +24,6 @@ _sumler.sean@gmail.com_
 
 ### License
 
-MIT License
+_MIT License_
 
 Copyright (c) Sean Pierce
