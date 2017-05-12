@@ -1,0 +1,11 @@
+<h1>Shoe List</h1>
+<br>
+<% if @shoes.any? %>
+  <ul>
+    <% @shoes.each do |shoe| %>
+      <li><%= shoe.name %> $<%= shoe.to_money(shoe.cost) %></li>
+    <% end %>
+  </ul>
+<% else %>
+<em>there are no shoes in the database</em>
+<% end %>

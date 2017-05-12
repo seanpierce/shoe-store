@@ -9,11 +9,16 @@
   </head>
   <body>
     <div class="container">
-      <%= yield %>
-      <br><br><hr>
       <div class="nav">
-
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/shoes">See Shoe List</a></li>
+          <li><a href="/stores">See Store List</a></li>
+          <li><a href="/shoes/new">Add Shoes to List</a></li>
+          <li><a href="/stores/new">Add Store to List</a></li>
+        </ul>
       </div>
+      <%= yield %>
     </div>
   </body>
 </html>

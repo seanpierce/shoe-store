@@ -1,0 +1,11 @@
+<h1>Store List</h1>
+<br>
+<% if @stores.any? %>
+  <ul>
+    <% @stores.each do |store| %>
+      <li><%= store.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+<em>there are no stores in the database</em>
+<% end %>

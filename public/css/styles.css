@@ -4,18 +4,44 @@
 .nav a {
   margin: 0 12px;
 }
-textarea {
-  margin: 0 0 10px 0;
-  width: 300px;
-  height: 100px;
-}
-
 ul {
   list-style: none;
   padding: 0;
 }
-
-li:before {
-  content: "🍴";
-  padding-right: 8px;
+.nav {
+  margin-top: 2em;
+  border-bottom: solid 1px black;
+}
+.nav ul {
+  width: 100%;
+  text-align: justify;
+}
+.nav ul li {
+  display: inline-block;
+  width: 18%;
+  text-align: center;
+  vertical-align: top;
+  border: solid 1px black;
+  padding: 1em;
+}
+.nav ul a {
+  color: inherit;
+}
+.nav ul a:hover {
+  text-decoration: none;
+}
+.nav ul:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+input {
+  display: block;
+  margin-bottom: 1em;
+  width: 200px;
+  border: solid 1px black;
+}
+button {
+  border: solid 1px black;
+  background-color: white;
 }
