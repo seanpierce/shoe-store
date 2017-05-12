@@ -1,0 +1,18 @@
+<h1><%= @shoe.name %></h1>
+<h3>$<%= @shoe.to_money(@shoe.cost) %></h3>
+<br>
+
+<form action="/shoe/<%= @shoe.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="edit-shoe">Edit shoe name:</label>
+  <input type="text" name="edit-shoe">
+  <label for="edit-shoe-cost">Edit shoe cost: $</label> <em>(ex: 40)</em>
+  <input type="number" name="edit-shoe-cost">
+  <button type="submit">Submit</button>
+</form>
+<br><br>
+
+<form action="/shoe/<%= @shoe.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="warning" type="submit">Delete shoe</button>
+</form>

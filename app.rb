@@ -24,11 +24,26 @@ get "/shoes/new" do
   erb :add_shoes
 end
 
+# path to see individual shoe
+get "/shoe/:id" do
+  @shoe = Shoe.find(params['id'])
+  erb :shoe
+end
+
+# path to edit individual shoe information
+patch "/shoe/:id/edit" do
+  shoe = Shoe.find(params['id'])
+  name = params['edit-shoe']
+  cost = params['edit-shoe-cost']
+  shoe.update(name: name, cost: cost)
+  redirect "/shoe/#{shoe.id}"
+end
+
 # post new shoe to DB path (redirect to shoes list)
 post "/shoes/new" do
   name = params['new-shoe'].cap_name
   cost = params['new-shoe-cost'].to_i
-  Shoe.find_or_create_by(name: name, cost: cost)
+  Shoe.find_or_create_by(name: name)
   redirect "/shoes"
 end
 

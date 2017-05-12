@@ -45,3 +45,7 @@ button {
   border: solid 1px black;
   background-color: white;
 }
+.warning {
+  border: solid 1px red;
+  color: red;
+}
