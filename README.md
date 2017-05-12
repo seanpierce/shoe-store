@@ -22,8 +22,5 @@ Bundler
 Sean Pierce  
 _sumler.sean@gmail.com_
 
-### License
-
-_MIT License_
-
+_License MIT_  
 Copyright (c) Sean Pierce
