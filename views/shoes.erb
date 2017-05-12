@@ -3,7 +3,7 @@
 <% if @shoes.any? %>
   <ul>
     <% @shoes.each do |shoe| %>
-      <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> $<%= shoe.to_money(shoe.cost) %></li>
+      <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> $<%= shoe.cost %></li>
     <% end %>
   </ul>
 <% else %>

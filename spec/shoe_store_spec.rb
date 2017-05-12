@@ -4,8 +4,8 @@ describe(Shoe) do
   it { should have_and_belong_to_many(:stores) }
 
   it "capitalizes the name before saving" do
-    shoe = Shoe.create(name: "converse")
-    expect(shoe.name).to(eq("Converse"))
+    shoe = Shoe.create(name: "converse all star")
+    expect(shoe.name).to(eq("Converse All Star"))
   end
 
   it "validates presence of name" do
