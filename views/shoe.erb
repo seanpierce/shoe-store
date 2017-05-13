@@ -35,7 +35,8 @@
     <form style="margin-top: 6px;" action="/shoe/<%= @shoe.id %>/new/store" method="post">
       <input type="hidden" name="_method" value="patch">
       <select name="add-store-to-shoe">
-        <% Store.all.each do |store| %>
+        <option selected="selected" disabled>Select a store</option>
+        <% Store.order(:name).each do |store| %>
         <option value="<%= store.id %>"><%= store.name %></option>
         <% end %>
       </select>

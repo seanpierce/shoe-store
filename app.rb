@@ -27,7 +27,7 @@ end
 # path to see individual shoe
 get "/shoe/:id" do
   @shoe = Shoe.find(params['id'])
-  @shoes_stores = @shoe.stores
+  @shoes_stores = @shoe.stores.order(:name)
   erb :shoe
 end
 
@@ -64,7 +64,11 @@ end
 # redirect back to shoe page
 patch "/shoe/:id/new/store" do
   shoe = Shoe.find(params['id'])
-  shoe.stores << Store.find(params['add-store-to-shoe'])
+  # this is a lengthy validation
+  # if the input from the add-store-to-shoe select is valid, AND the store is not yet included in the array of stores, then...
+  if params['add-store-to-shoe'] != nil && shoe.stores.exclude?(Store.find(params['add-store-to-shoe']))
+    shoe.stores << Store.find(params['add-store-to-shoe'])
+  end
   redirect "/shoe/#{shoe.id}"
 end
 
@@ -93,7 +97,7 @@ end
 # path to individual store
 get "/store/:id" do
   @store = Store.find(params['id'])
-  @stores_shoes = @store.shoes
+  @stores_shoes = @store.shoes.order(:name)
   erb :store
 end
 
@@ -116,10 +120,7 @@ end
 # path to create a new shoe and add it to a store
 post "/store/:id/new/shoe" do
   store = Store.find(params['id'])
-  shoe_name = params['new-shoe']
-  shoe_cost = params['new-shoe-cost']
-  new_shoe = Shoe.find_or_create_by(name: shoe_name, cost: shoe_cost)
-  store.shoes << new_shoe
+  store.shoes << Shoe.find(params['shoe-id'])
   redirect "/store/#{store.id}"
 end
 

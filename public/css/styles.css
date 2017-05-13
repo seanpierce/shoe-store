@@ -53,3 +53,13 @@ select {
 	background: white;
 	border: 1px solid black;
 }
+.shoe-list {
+  width: 200px;
+  display: inline-block;
+}
+.shoe-list li {
+  border-bottom: solid 1px #eee;
+}
+.shoe-list li span {
+  float: right;
+}

@@ -21,9 +21,9 @@
   <div class="col-md-6">
     <strong>Shoe list:</strong><br>
     <% if @stores_shoes.any? %>
-      <ul>
+      <ul class="shoe-list">
         <% @stores_shoes.each do |shoe| %>
-        <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> $<%= shoe.cost %></li>
+        <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span>$<%= shoe.cost %></span></li>
         <% end %>
       </ul>
     <% else %>
@@ -31,10 +31,10 @@
     <% end %>
     <br>
     <form action="/store/<%= @store.id %>/new/shoe" method="post">
-      <label for="new-shoe">Add a shoe to <%= @store.name %>: </label><em> (ex: Converse)</em>
-      <input type="text" name="new-shoe">
-      <label for="new-shoe-cost">Cost: $ </label><em> (ex: 45)</em>
-      <input type="number" name="new-shoe-cost">
+      <select name="shoe-id">
+        <%  %>
+        <option value="<%= shoe.id %>"><%= shoe.name %></option>
+      </select>
       <button type="submit">Submit</button>
     </form>
   </div>

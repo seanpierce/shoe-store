@@ -1,9 +1,9 @@
 <h1>Shoe List</h1>
 <br>
 <% if @shoes.any? %>
-  <ul>
+  <ul class="shoe-list">
     <% @shoes.each do |shoe| %>
-      <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> $<%= shoe.cost %></li>
+      <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span>$<%= shoe.cost %></span></li>
     <% end %>
   </ul>
 <% else %>
