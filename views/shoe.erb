@@ -30,7 +30,7 @@
           <% @shoes_stores.each do |store| %>
           <li>
             <div><a id="<%= store.id %>" onclick="document.getElementById('remove-store').submit();" href="#">&#10005;</a></div>
-            <a href="/shoe/<%= store.id %>"><%= store.name %></a>
+            <a href="/store/<%= store.id %>"><%= store.name %></a>
             <input type="hidden" name="remove-store-from-shoe" value="<%= store.id %>"/>
           </li>
           <% end %>
