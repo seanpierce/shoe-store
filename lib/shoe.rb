@@ -2,7 +2,6 @@ class Shoe < ActiveRecord::Base
   has_and_belongs_to_many :stores
   validates :name, :presence => true, on: :create
   validates :cost, :presence => true, on: :create
-
   before_save :capitalize_name
 
   def to_money(cost)

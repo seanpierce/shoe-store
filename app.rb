@@ -8,16 +8,15 @@ get "/" do
   erb :index
 end
 
+# ------------------------------------------------Shoes
+# ------------------------------------------------Shoes
+# ------------------------------------------------Shoes
+
+
 # path to see shoe list
 get "/shoes" do
   @shoes = Shoe.order(:name)
   erb :shoes
-end
-
-# path to see store list
-get "/stores" do
-  @stores = Store.order(:name)
-  erb :stores
 end
 
 # path to add_shoes form
@@ -28,6 +27,7 @@ end
 # path to see individual shoe
 get "/shoe/:id" do
   @shoe = Shoe.find(params['id'])
+  @shoes_stores = @shoe.stores
   erb :shoe
 end
 
@@ -60,6 +60,24 @@ post "/shoes/new" do
   redirect "/shoes"
 end
 
+# path to add a store association to a shoe
+# redirect back to shoe page
+patch "/shoe/:id/new/store" do
+  shoe = Shoe.find(params['id'])
+  shoe.stores << Store.find(params['add-store-to-shoe'])
+  redirect "/shoe/#{shoe.id}"
+end
+
+# ------------------------------------------------Stores
+# ------------------------------------------------Stores
+# ------------------------------------------------Stores
+
+# path to see store list
+get "/stores" do
+  @stores = Store.order(:name)
+  erb :stores
+end
+
 # path to add_stores form
 get "/stores/new" do
   erb :add_stores
@@ -72,9 +90,38 @@ post "/stores/new" do
   redirect "/stores"
 end
 
+# path to individual store
+get "/store/:id" do
+  @store = Store.find(params['id'])
+  @stores_shoes = @store.shoes
+  erb :store
+end
 
+# path to edit store info
+patch "/store/:id/edit" do
+  store = Store.find(params['id'])
+  name = params['edit-store']
+  if name != ""
+    store.update(name: name)
+  end
+  redirect "/store/#{store.id}"
+end
 
+# path to remove store form DB
+delete "/store/:id/delete" do
+  Store.find(params['id']).destroy
+  redirect "/stores"
+end
 
+# path to create a new shoe and add it to a store
+post "/store/:id/new/shoe" do
+  store = Store.find(params['id'])
+  shoe_name = params['new-shoe']
+  shoe_cost = params['new-shoe-cost']
+  new_shoe = Shoe.find_or_create_by(name: shoe_name, cost: shoe_cost)
+  store.shoes << new_shoe
+  redirect "/store/#{store.id}"
+end
 
 
 

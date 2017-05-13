@@ -1,18 +1,47 @@
 <h1><%= @shoe.name %></h1>
 <h3>$<%= @shoe.to_money(@shoe.cost) %></h3>
 <br>
+<div class="row">
+  <div class="col-md-6">
+    <form action="/shoe/<%= @shoe.id %>/edit" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <label for="edit-shoe">Edit shoe name:</label>
+      <input type="text" name="edit-shoe">
+      <label for="edit-shoe-cost">Edit shoe cost: $</label> <em>(ex: 40)</em>
+      <input type="number" name="edit-shoe-cost">
+      <button type="submit">Submit</button>
+    </form>
+    <br>
 
-<form action="/shoe/<%= @shoe.id %>/edit" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <label for="edit-shoe">Edit shoe name:</label>
-  <input type="text" name="edit-shoe">
-  <label for="edit-shoe-cost">Edit shoe cost: $</label> <em>(ex: 40)</em>
-  <input type="number" name="edit-shoe-cost">
-  <button type="submit">Submit</button>
-</form>
-<br><br>
+    <form action="/shoe/<%= @shoe.id %>/delete" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button class="warning" type="submit">Delete shoe</button>
+    </form>
+  </div>
 
-<form action="/shoe/<%= @shoe.id %>/delete" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button class="warning" type="submit">Delete shoe</button>
-</form>
+  <div class="col-md-6">
+    <strong>Find a pair of <em><%= @shoe.name %>(s)</em> at these stores:</strong><br>
+    <% if @shoes_stores.any? %>
+      <ul>
+        <% @shoes_stores.each do |store| %>
+        <li><a href="/store/<%= store.id %>"><%= store.name %></a></li>
+        <% end %>
+      </ul>
+    <% else %>
+    <em>This store does not have any stores</em> 🤔<br>
+    <% end %>
+    <br><br>
+    <strong>Add a store that carries <em><%= @shoe.name %>(s)</em></strong><br>
+    <form style="margin-top: 6px;" action="/shoe/<%= @shoe.id %>/new/store" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <select name="add-store-to-shoe">
+        <% Store.all.each do |store| %>
+        <option value="<%= store.id %>"><%= store.name %></option>
+        <% end %>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+
+  </div>
+
+</div>

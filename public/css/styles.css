@@ -35,7 +35,7 @@ ul {
     display: inline-block;
     width: 100%;
 }
-input {
+input, select {
   display: block;
   margin-bottom: 1em;
   width: 200px;
@@ -48,4 +48,8 @@ button {
 .warning {
   border: solid 1px red;
   color: red;
+}
+select {
+	background: white;
+	border: 1px solid black;
 }
