@@ -31,7 +31,7 @@
     <em>This store does not have any stores</em> 🤔<br>
     <% end %>
     <br><br>
-    <strong>Add a store that carries <em><%= @shoe.name %>(s)</em></strong><br>
+    <strong>Add a store that carries <em><%= @shoe.name %>(s)</em>:</strong><br>
     <form style="margin-top: 6px;" action="/shoe/<%= @shoe.id %>/new/store" method="post">
       <input type="hidden" name="_method" value="patch">
       <select name="add-store-to-shoe">

@@ -29,14 +29,21 @@
     <% else %>
     <em>This store does not have any shoes</em> 🤔<br>
     <% end %>
-    <br>
-    <form action="/store/<%= @store.id %>/new/shoe" method="post">
-      <select name="shoe-id">
-        <%  %>
+    <br><br>
+    <strong>Add a shoe that <em><%= @store.name %></em> carries:</strong><br>
+    <% if Shoe.all.any? %>
+    <form style="margin-top: 6px;" action="/store/<%= @store.id %>/new/shoe" method="post">
+      <select name="add-shoe-to-store">
+        <option selected="selected" disabled>Select a shoe</option>
+        <% Shoe.order(:name).each do |shoe| %>
         <option value="<%= shoe.id %>"><%= shoe.name %></option>
+        <% end %>
       </select>
       <button type="submit">Submit</button>
     </form>
+    <% else %>
+    <em>There are no shoes in the database!</em>
+    <% end %>
   </div>
 
 </div>

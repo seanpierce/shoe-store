@@ -120,11 +120,12 @@ end
 # path to create a new shoe and add it to a store
 post "/store/:id/new/shoe" do
   store = Store.find(params['id'])
-  store.shoes << Shoe.find(params['shoe-id'])
+  # similar validation written above, this one is adding a shoe association for a store
+  if params['add-shoe-to-store'] != nil && store.shoes.exclude?(Shoe.find(params['add-shoe-to-store']))
+    store.shoes << Shoe.find(params['add-shoe-to-store'])
+  end
   redirect "/store/#{store.id}"
 end
-
-
 
 
 

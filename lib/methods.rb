@@ -1,5 +1,5 @@
-# The promy wanted a capitalize name CALLBACK. However, that convolutes the "find_or_create_by" method.
-# So, I will write a public capitalize_name method to use on form inputs
+# The promt wanted a capitalize name CALLBACK. However, that convolutes the "find_or_create_by" method.
+# So, I will write a public capitalize_name method to use against form inputs in app.rb
 class String
   def cap_name
     split_name = self.split(' ')
