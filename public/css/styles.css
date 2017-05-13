@@ -63,3 +63,11 @@ select {
 .shoe-list li span {
   float: right;
 }
+.shoe-list li div {
+  color: red;
+  display: inline;
+  margin-right: 8px;
+}
+.shoe-list li div a {
+  color: inherit;
+}

@@ -127,6 +127,13 @@ post "/store/:id/new/shoe" do
   redirect "/store/#{store.id}"
 end
 
+# path to remove a shoe associated with a store (from store view)
+delete "/store/:id/remove/shoe" do
+  store = Store.find(params['id'])
+  shoe_id = Shoe.find(params['remove-shoe-from-store'])
+  store.shoes.destroy(shoe_id)
+  redirect "/store/#{store.id}"
+end
 
 
 

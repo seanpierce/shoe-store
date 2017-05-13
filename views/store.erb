@@ -21,11 +21,21 @@
   <div class="col-md-6">
     <strong>Shoe list:</strong><br>
     <% if @stores_shoes.any? %>
-      <ul class="shoe-list">
-        <% @stores_shoes.each do |shoe| %>
-        <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span>$<%= shoe.cost %></span></li>
-        <% end %>
-      </ul>
+      <% # sneaky form to remove shoe association from store %>
+      <form id="remove-shoe" action="/store/<%= @store.id %>/remove/shoe" method="post">
+
+        <input type="hidden" name="_method" value="delete">
+        <ul class="shoe-list">
+          <% @stores_shoes.each do |shoe| %>
+          <li>
+            <div><a id="<%= shoe.id %>" onclick="document.getElementById('remove-shoe').submit();" href="#">&#10005;</a></div>
+            <a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span>$<%= shoe.cost %></span>
+            <input type="hidden" name="remove-shoe-from-store" value="<%= shoe.id %>"/>
+          </li>
+          <% end %>
+        </ul>
+      </form>
+      <% # end sneaky form %>
     <% else %>
     <em>This store does not have any shoes</em> 🤔<br>
     <% end %>
