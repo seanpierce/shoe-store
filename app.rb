@@ -72,6 +72,14 @@ patch "/shoe/:id/new/store" do
   redirect "/shoe/#{shoe.id}"
 end
 
+# path to remove a store associated with a shoe (from shoe view)
+delete "/shoe/:id/remove/store" do
+  shoe = Shoe.find(params['id'])
+  store_id = Store.find(params['remove-store-from-shoe'])
+  shoe.stores.destroy(store_id)
+  redirect "/shoe/#{shoe.id}"
+end
+
 # ------------------------------------------------Stores
 # ------------------------------------------------Stores
 # ------------------------------------------------Stores

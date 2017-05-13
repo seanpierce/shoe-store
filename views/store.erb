@@ -19,7 +19,7 @@
   </div>
 
   <div class="col-md-6">
-    <strong>Shoe list:</strong><br>
+    <strong><%= @store.name %> currently supplies:</strong><br>
     <% if @stores_shoes.any? %>
       <% # sneaky form to remove shoe association from store %>
       <form id="remove-shoe" action="/store/<%= @store.id %>/remove/shoe" method="post">

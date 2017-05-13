@@ -20,15 +20,25 @@
   </div>
 
   <div class="col-md-6">
-    <strong>Find a pair of <em><%= @shoe.name %>(s)</em> at these stores:</strong><br>
+    <strong>Find a pair of <em><%= @shoe.name %></em> at these stores:</strong><br>
     <% if @shoes_stores.any? %>
-      <ul>
-        <% @shoes_stores.each do |store| %>
-        <li><a href="/store/<%= store.id %>"><%= store.name %></a></li>
-        <% end %>
-      </ul>
+      <% # sneaky form to remove store association from a shoe %>
+      <form id="remove-store" action="/shoe/<%= @shoe.id %>/remove/store" method="post">
+
+        <input type="hidden" name="_method" value="delete">
+        <ul class="shoe-list">
+          <% @shoes_stores.each do |store| %>
+          <li>
+            <div><a id="<%= store.id %>" onclick="document.getElementById('remove-store').submit();" href="#">&#10005;</a></div>
+            <a href="/shoe/<%= store.id %>"><%= store.name %></a>
+            <input type="hidden" name="remove-store-from-shoe" value="<%= store.id %>"/>
+          </li>
+          <% end %>
+        </ul>
+      </form>
+      <% # end sneaky form %>
     <% else %>
-    <em>This store does not have any stores</em> 🤔<br>
+    <em>This shoe is not available at any stores</em> 🤔<br>
     <% end %>
     <br><br>
     <strong>Add a store that carries <em><%= @shoe.name %>(s)</em>:</strong><br>
