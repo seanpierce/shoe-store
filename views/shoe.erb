@@ -1,5 +1,5 @@
 <h1><%= @shoe.name %></h1>
-<h3>$<%= @shoe.to_money(@shoe.cost) %></h3>
+<h3><%= format("$%.2f", @shoe.cost) %></h3>
 <br>
 <div class="row">
   <div class="col-md-6">
@@ -29,7 +29,7 @@
         <ul class="shoe-list">
           <% @shoes_stores.each do |store| %>
           <li>
-            <div><a id="<%= store.id %>" onclick="document.getElementById('remove-store').submit();" href="#">&#10005;</a></div>
+            <div><a id="store<%= store.id %>" onclick="document.getElementById('remove-store').submit();" href="#">&#10005;</a></div>
             <a href="/store/<%= store.id %>"><%= store.name %></a>
             <input type="hidden" name="remove-store-from-shoe" value="<%= store.id %>"/>
           </li>
@@ -50,7 +50,7 @@
         <option value="<%= store.id %>"><%= store.name %></option>
         <% end %>
       </select>
-      <button type="submit">Submit</button>
+      <button id="add-store-button" type="submit">Submit</button>
     </form>
 
   </div>

@@ -3,7 +3,7 @@
 <% if @shoes.any? %>
   <ul class="shoe-list">
     <% @shoes.each do |shoe| %>
-      <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span>$<%= shoe.cost %></span></li>
+      <li><a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span><%= format("$%.2f", shoe.cost) %></span></li>
     <% end %>
   </ul>
 <% else %>

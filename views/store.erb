@@ -28,8 +28,8 @@
         <ul class="shoe-list">
           <% @stores_shoes.each do |shoe| %>
           <li>
-            <div><a id="<%= shoe.id %>" onclick="document.getElementById('remove-shoe').submit();" href="#">&#10005;</a></div>
-            <a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span>$<%= shoe.cost %></span>
+            <div><a id="shoe<%= shoe.id %>" onclick="document.getElementById('remove-shoe').submit();" href="#">&#10005;</a></div>
+            <a href="/shoe/<%= shoe.id %>"><%= shoe.name %></a> <span><%= format("$%.2f", shoe.cost) %></span>
             <input type="hidden" name="remove-shoe-from-store" value="<%= shoe.id %>"/>
           </li>
           <% end %>
@@ -49,7 +49,7 @@
         <option value="<%= shoe.id %>"><%= shoe.name %></option>
         <% end %>
       </select>
-      <button type="submit">Submit</button>
+      <button id="add-shoe-button" type="submit">Submit</button>
     </form>
     <% else %>
     <em>There are no shoes in the database!</em>
